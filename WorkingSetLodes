@@ -397,7 +397,7 @@ CombinedDataFrames$Geometry <- paste("0",CombinedDataFrames$Geometry)
 
 head(CombinedDataFrames)
 
-write.table(CombinedDataFrames, file="CombinedDataFrames.csv", sep = "shp")
+write.table(CombinedDataFrames, file="CombinedDataFrames.csv", sep = ",")
 
 
 
