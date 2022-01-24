@@ -362,9 +362,17 @@ plot(COTRACTS2020$geometry, main = "2020")
 
 library(mapview)
 library(leafsync)
+install.packages("mapview")
+install.packages("leafsync")
+library(mapview)
+library(leafsync)
+install.packages("systemfonts", type = "binary")
+library(systemfonts)
+
+mapview(tracts(state = "CO", county = "Arapahoe", year = 2018))
 
 
-sync(mapview(COTRACTS2020), mapview(COTRACTS2010))
+
 
 ```
 
