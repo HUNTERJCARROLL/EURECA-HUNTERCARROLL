@@ -1,29 +1,31 @@
 ---
-title: "Working Set Lodes"
+  title: "Working Set Lodes"
 author: "Hunter Carroll"
 date: "1/14/2022"
 output: html_document
 ---
-
+  
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
-RAC LODES/LEHD data for federal primary jobs in 2018. (Residential Area Characteristics)
+#RAC Lodes data is compiled for the year 2018 and using the write.table function I also create a CSV displaying the results. 
 
 
 ```{r}
-
-#install.packages(setdiff(c("ggplot2", "stringr", "dplyr", "devtools"), rownames(installed.packages())),
-#                 repos="http://cran.rstudio.com")
-
+#Packages you will need:
+install.packages("dplyr")
 library(dplyr)
+install.packages(stringr)
 library(stringr)
+install.packages("devtools")
 library(devtools)
+install.packages("lehdr")
 library(lehdr)
 library(readr)
 devtools::install_github("jamgreen/lehdr")
+
+
 
 #Listing below is the census tract level data for the following observed states. The characteristic is 2018 SI03 (Federal Primary Jobs)~JT05 for the year 2018. 
 
@@ -140,49 +142,37 @@ wv= grab_lodes(state = "wv", year = 2018, lodes_type = "RAC", job_type = "JT05",
 
 wy= grab_lodes(state = "wy", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-THISRACJT05= bind_rows( AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, Hi, ia, id, il, In, Ks, Ky, La, Ma, Md, Me, Mi, Mn, Mo, Ms, Mt, Nc, Nd, Ne, Nh, Nj, Nm, Nv, Ny, oh, ok, or, Pa, Pr, Ri, Sc, Sd, Tn, Tx, ut, va, vi, vt, wa, wi, wv, wy) 
+#Binding the results to create a CSV:
+
+RACJT052018= bind_rows( AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, Hi, ia, id, il, In, Ks, Ky, La, Ma, Md, Me, Mi, Mn, Mo, Ms, Mt, Nc, Nd, Ne, Nh, Nj, Nm, Nv, Ny, oh, ok, or, Pa, Pr, Ri, Sc, Sd, Tn, Tx, ut, va, vi, vt, wa, wi, wv, wy)
+
+#Writing the CSV:
+
+write.table(RACJT052018, file="RACJT052018.csv", sep = ",")
+
+#Once you have complied the data import the CSV from the working directory it should be names "RACJT052018.csv"
 
 
 
-#Create the CSV:
-
-write.table(THISRACJT05, file="THISJT052018RAC.csv", sep = ",")
-
-
-
-
-
-
-
-
-
-
-
- 
 ```
 
 
-
-
-
-WAC JT05 SI03 Federal Primary Jobs 2016 (Work Area Characteristics):
+#Next we export the WAC (Work Area Characteristics) from the Census LODES parent directory.
 
 ```{r}
-
-
-#install.packages(setdiff(c("ggplot2", "stringr", "dplyr", "devtools"), rownames(installed.packages())),
-#                 repos="http://cran.rstudio.com")
+#Once again the Packages you will need:
+install.packages("dplyr")
 library(dplyr)
+install.packages(stringr)
 library(stringr)
+install.packages("devtools")
 library(devtools)
+install.packages("lehdr")
 library(lehdr)
 library(readr)
 devtools::install_github("jamgreen/lehdr")
 
-#Listing below is the census tract level data for the following observed states. The characteristic is 2018 SI03 (Federal Primary Jobs)~JT05 for the year 2018. 
-
-#ALASKA Remove 
-#str_pad(census.data$GEOID, 11, pad = "0") Pad data with "Zero"
+#The code for WAC in all observed states for the year 2016:
 
 AK1= grab_lodes(state = "AK", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
@@ -296,27 +286,37 @@ wv1= grab_lodes(state = "wv", year = 2016, lodes_type = "WAC", job_type = "JT05"
 
 wy1= grab_lodes(state = "wy", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
+#Next we bind the rows:
+
 WACJT05= bind_rows( AK1, AL1, AR1, AZ1, CA1, CO1, CT1, DC1, DE1, FL1, GA1, Hi1, ia1, id1, il1, In1, Ks1, Ky1, La1, Ma1, Md1, Me1, Mi1, Mn1, Mo1, Ms1, Mt1, Nc1, Nd1, Ne1, Nh1, Nj1, Nm1, Nv1, Ny1, oh1, ok1, or1, Pa1, Ri1, Sc1, Sd1, Tn1, Tx1, ut1, va1, vt1, wa1, wi1, wv1, wy1) 
 
-#MERGE()
-#merge(df1, df2, by.x=c(), by.y=c(), all=TRUE)
+#Write the CSV:
 
-
-write.table(WACJT05, file="NewJT052018WAC.csv", sep = ",")
-
-
-
-
+write.table(WACJT05, file="JT052018WAC.csv", sep = ",")
 
 ```
 
-Working with SF and practice: 
+
+
+#Working with the sf package and tigris:
 
 ```{r}
+
+#The packages you will need:
+
+install.packages("sf")
 library(sf)
+install.packages("tidycensus")
 library(tidycensus)
+install.packages("tigris")
 library(tigris)
 options(tigris_use_cache = TRUE)
+install.packages("mapview")
+library(mapview)
+install.packages("leafsync")
+library(leafsync)
+install.packages("systemfonts", type = "binary")
+library(systemfonts)
 
 
 CO <- tracts(state = "CO")
@@ -340,6 +340,7 @@ plot(Arapahoe_Tracts$geometry)+ title(main = "Arapahoe County (CO) Tracts")
 
 
 Arapahoe_Roads <- roads(state = "CO", county = "Arapahoe")
+
 plot(Arapahoe_Roads)
 
 #Now plotting Census Tracts for different years:
@@ -353,41 +354,35 @@ COTRACTS2010 <- suppressMessages(tracts("CO", "Arapahoe", cb=TRUE, year = 2010))
 COTRACTS2020<- suppressMessages( tracts("CO", "Arapahoe", cb= TRUE, year = 2020))
 
 par(mfrow=c(2,2))
-    
+
 plot(COTRACTS1990$geometry, main = "1990")
 plot(COTRACTS2000$geometry, main= "2000")
 plot(COTRACTS2010$geometry, main = "2010")
 plot(COTRACTS2020$geometry, main = "2020")
 
-
-library(mapview)
-library(leafsync)
-install.packages("mapview")
-install.packages("leafsync")
-library(mapview)
-library(leafsync)
-install.packages("systemfonts", type = "binary")
-library(systemfonts)
-
 mapview(tracts(state = "CO", county = "Arapahoe", year = 2018))
-
-
 
 
 ```
 
 
-Combined Data Frames are below for the 2018 JT05 RAC/WAC/CENSUSDATA as a CSV:
+#Now, we combine the written CSV for RAC and WAC with Census data provided into a single data frame:
 
 ```{r}
-#Now, doing it with my own data:
 
+#Packages you need:
+
+install.packages("plyr")
+library(plyr)
+install.packages("stringr")
 library(stringr)
 library(readr)
-THISJT052018RAC <- read.csv("THISJT052018RAC.csv")
-NewJT052018WAC <- read.csv("NewJT052018WAC.csv", colClasses = c(Geometry = "character"))
-census_data2019<-read.csv("census.data2019.csv")
 
+THISJT052018RAC <- read.csv("THISJT052018RAC.csv")
+
+NewJT052018WAC <- read.csv("NewJT052018WAC.csv", colClasses = c(Geometry = "character"))
+
+census_data2019<-read.csv("census.data2019.csv")
 
 colnames(THISJT052018RAC)[colnames(THISJT052018RAC)== "h_tract"] <- "Geometry"
 
@@ -395,15 +390,15 @@ colnames(NewJT052018WAC)[colnames(NewJT052018WAC)== "h_tract"] <- "Geometry"
 
 colnames(census_data2019)[colnames(census_data2019)== "GEOID"] <- "Geometry"
 
-install.packages("plyr")
-library(plyr)
-
 CombinedDataFrames <- join_all(list(THISJT052018RAC, NewJT052018WAC, census_data2019), by="Geometry", type = 'full')
 
 CombinedDataFrames$Geometry <- paste("0",CombinedDataFrames$Geometry)
 
+# View of the data (Make sure the leading digit zero is there)
 
 head(CombinedDataFrames)
+
+#Write the CSV for the combined data frames:
 
 write.table(CombinedDataFrames, file="CombinedDataFrames.csv", sep = ",")
 
@@ -411,4 +406,3 @@ write.table(CombinedDataFrames, file="CombinedDataFrames.csv", sep = ",")
 
 
 ```
-
