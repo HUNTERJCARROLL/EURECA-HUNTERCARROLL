@@ -29,128 +29,128 @@ devtools::install_github("jamgreen/lehdr")
 
 #Listing below is the census tract level data for the following observed states. The characteristic is 2018 SI03 (Federal Primary Jobs)~JT05 for the year 2018. 
 
-AK= grab_lodes(state = "AK", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+AK= grab_lodes(state = "AK", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-AL= grab_lodes(state = "AL", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+AL= grab_lodes(state = "AL", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-AR= grab_lodes(state = "AR", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+AR= grab_lodes(state = "AR", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-AZ= grab_lodes(state = "AZ", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+AZ= grab_lodes(state = "AZ", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-CA= grab_lodes(state = "CA", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-
-CO= grab_lodes(state = "CO", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-CT= grab_lodes(state = "CT", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-DC= grab_lodes(state = "DC", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-DE= grab_lodes(state = "DE", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-FL= grab_lodes(state = "FL", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-GA= grab_lodes(state = "GA", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Hi= grab_lodes(state = "Hi", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-ia= grab_lodes(state = "ia", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-id = grab_lodes(state = "id", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-il= grab_lodes(state = "il", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-In= grab_lodes(state = "in", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Ks= grab_lodes(state = "Ks", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Ky= grab_lodes(state = "Ky", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-La= grab_lodes(state = "La", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+CA= grab_lodes(state = "CA", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
 
-Ma= grab_lodes(state = "Ma", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+CO= grab_lodes(state = "CO", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-Md= grab_lodes(state = "Md", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+CT= grab_lodes(state = "CT", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-Me= grab_lodes(state = "Me", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+DC= grab_lodes(state = "DC", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-Mi= grab_lodes(state = "Mi", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+DE= grab_lodes(state = "DE", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-Mn= grab_lodes(state = "Mn", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+FL= grab_lodes(state = "FL", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
+GA= grab_lodes(state = "GA", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-Mo= grab_lodes(state = "Mo", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+Hi= grab_lodes(state = "Hi", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-Ms= grab_lodes(state = "Ms", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+ia= grab_lodes(state = "ia", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-Mt= grab_lodes(state = "Mt", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+id = grab_lodes(state = "id", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-Nc= grab_lodes(state = "Nc", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+il= grab_lodes(state = "il", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-Nd= grab_lodes(state = "Nd", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+In= grab_lodes(state = "in", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-Ne= grab_lodes(state = "Ne", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+Ks= grab_lodes(state = "Ks", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-Nh= grab_lodes(state = "nh", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+Ky= grab_lodes(state = "Ky", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-Nj= grab_lodes(state = "Nj", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Nm= grab_lodes(state = "Nm", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Nv= grab_lodes(state = "Nv", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Ny= grab_lodes(state = "Ny", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-oh= grab_lodes(state = "oh", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-ok= grab_lodes(state = "ok", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-or= grab_lodes(state = "or", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Pa= grab_lodes(state = "pa", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Pr= grab_lodes(state = "pr", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Ri= grab_lodes(state = "Ri", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Sc= grab_lodes(state = "Sc", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+La= grab_lodes(state = "La", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
 
-Sd= grab_lodes(state = "Sd", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+Ma= grab_lodes(state = "Ma", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+Md= grab_lodes(state = "Md", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+Me= grab_lodes(state = "Me", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+Mi= grab_lodes(state = "Mi", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+Mn= grab_lodes(state = "Mn", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
 
-Tn= grab_lodes(state = "Tn", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+Mo= grab_lodes(state = "Mo", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-Tx= grab_lodes(state = "Tx", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+Ms= grab_lodes(state = "Ms", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+Mt= grab_lodes(state = "Mt", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+Nc= grab_lodes(state = "Nc", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+Nd= grab_lodes(state = "Nd", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+Ne= grab_lodes(state = "Ne", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+Nh= grab_lodes(state = "nh", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+Nj= grab_lodes(state = "Nj", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+Nm= grab_lodes(state = "Nm", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+Nv= grab_lodes(state = "Nv", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+Ny= grab_lodes(state = "Ny", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+oh= grab_lodes(state = "oh", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+ok= grab_lodes(state = "ok", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+or= grab_lodes(state = "or", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+Pa= grab_lodes(state = "pa", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+Pr= grab_lodes(state = "pr", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+Ri= grab_lodes(state = "Ri", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+Sc= grab_lodes(state = "Sc", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
 
-ut= grab_lodes(state = "ut", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-va= grab_lodes(state = "va", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-vi= grab_lodes(state = "vi", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+Sd= grab_lodes(state = "Sd", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
 
-vt= grab_lodes(state = "vt", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+Tn= grab_lodes(state = "Tn", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-wa= grab_lodes(state = "wa", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+Tx= grab_lodes(state = "Tx", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-wi= grab_lodes(state = "wi", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-wv= grab_lodes(state = "wv", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+ut= grab_lodes(state = "ut", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
-wy= grab_lodes(state = "wy", year = 2018, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+va= grab_lodes(state = "va", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+vi= grab_lodes(state = "vi", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+
+vt= grab_lodes(state = "vt", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+wa= grab_lodes(state = "wa", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+wi= grab_lodes(state = "wi", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+wv= grab_lodes(state = "wv", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
+
+wy= grab_lodes(state = "wy", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
 
 #Binding the results to create a CSV:
 
-RACJT052018= bind_rows( AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, Hi, ia, id, il, In, Ks, Ky, La, Ma, Md, Me, Mi, Mn, Mo, Ms, Mt, Nc, Nd, Ne, Nh, Nj, Nm, Nv, Ny, oh, ok, or, Pa, Pr, Ri, Sc, Sd, Tn, Tx, ut, va, vi, vt, wa, wi, wv, wy)
+RAC2018= bind_rows( AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, Hi, ia, id, il, In, Ks, Ky, La, Ma, Md, Me, Mi, Mn, Mo, Ms, Mt, Nc, Nd, Ne, Nh, Nj, Nm, Nv, Ny, oh, ok, or, Pa, Pr, Ri, Sc, Sd, Tn, Tx, ut, va, vi, vt, wa, wi, wv, wy)
 
 #Writing the CSV:
 
-write.table(RACJT052018, file="RACJT052018.csv", sep = ",")
+write.table(RAC2018, file="RAC2018.csv", sep = ",")
 
-#Once you have complied the data import the CSV from the working directory it should be names "RACJT052018.csv"
+#Once you have complied the data import the CSV from the working directory it should be names "RAC2018.csv"
 
 
 
@@ -161,13 +161,13 @@ write.table(RACJT052018, file="RACJT052018.csv", sep = ",")
 
 ```{r}
 #Once again the Packages you will need:
-install.packages("dplyr")
+#install.packages("dplyr")
 library(dplyr)
-install.packages(stringr)
+#install.packages(stringr)
 library(stringr)
-install.packages("devtools")
+#install.packages("devtools")
 library(devtools)
-install.packages("lehdr")
+#install.packages("lehdr")
 library(lehdr)
 library(readr)
 devtools::install_github("jamgreen/lehdr")
@@ -292,7 +292,7 @@ WACJT05= bind_rows( AK1, AL1, AR1, AZ1, CA1, CO1, CT1, DC1, DE1, FL1, GA1, Hi1, 
 
 #Write the CSV:
 
-write.table(WACJT05, file="JT052018WAC.csv", sep = ",")
+write.table(WACJT05, file="2016WAC.csv", sep = ",")
 
 ```
 
@@ -372,27 +372,29 @@ mapview(tracts(state = "CO", county = "Arapahoe", year = 2018))
 
 #Packages you need:
 
-install.packages("plyr")
+#install.packages("plyr")
 library(plyr)
-install.packages("stringr")
+#install.packages("stringr")
 library(stringr)
 library(readr)
 
-THISJT052018RAC <- read.csv("THISJT052018RAC.csv")
 
-NewJT052018WAC <- read.csv("NewJT052018WAC.csv", colClasses = c(Geometry = "character"))
+RAC2018 <- read.csv("RAC2018.csv")
 
-census_data2019<-read.csv("census.data2019.csv")
+X2016WAC <- read_csv("2016WAC.csv")
 
-colnames(THISJT052018RAC)[colnames(THISJT052018RAC)== "h_tract"] <- "Geometry"
 
-colnames(NewJT052018WAC)[colnames(NewJT052018WAC)== "h_tract"] <- "Geometry"
+census_data2019 <- read.csv("census.data2019.csv")
 
-colnames(census_data2019)[colnames(census_data2019)== "GEOID"] <- "Geometry"
+colnames(RAC2018)[colnames(RAC2018)== "h_tract"] <- "GEOID"
 
-CombinedDataFrames <- join_all(list(THISJT052018RAC, NewJT052018WAC, census_data2019), by="Geometry", type = 'full')
+colnames(X2016WAC)[colnames(X2016WAC)== "w_tract"] <- "GEOID"
 
-CombinedDataFrames$Geometry <- paste("0",CombinedDataFrames$Geometry)
+colnames(census_data2019)[colnames(census_data2019)== "GEOID"] <- "GEOID"
+
+CombinedDataFrames <- join_all(list(RAC2018, X2016WAC, census_data2019), by="GEOID", type = 'full')
+
+CombinedDataFrames$GEOID <- paste("0",CombinedDataFrames$GEOID)
 
 # View of the data (Make sure the leading digit zero is there)
 
@@ -406,3 +408,67 @@ write.table(CombinedDataFrames, file="CombinedDataFrames.csv", sep = ",")
 
 
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+
+library(sf)
+
+#Working with the SF package: 
+
+#Loading in the shape files for census tracts: 
+
+#Link of Data source: https://lehd.ces.census.gov/data/schema/latest/lehd_shapefiles.html#_sources  
+
+
+
+ST <- st_read("/Users/huntercarroll/Desktop/WorkingSetLodes/tl_2021_78_tract/tl_2021_78_tract.shp")
+SpacialCombined<-join_all(list(ST,CombinedDataFrames), by="GEOID")
+write.table(SpacialCombined, file="SpacialCombined.csv", sep = ",")
+
+SpacialCombined <- read.csv("SpacialCombined.csv")
+
+head(ST)
+head(CombinedDataFrames)
+
+
+
+
+
+write.table(SpacialCombined, file="SpacialCombined.csv", sep = ",")
+
+SpacialCombined <- read.csv("SpacialCombined.csv")
+
+
+#Plotting the Tracts of Colorado:
+
+studysites <- SpacialCombined %>%
+  select('STATE' = STATEFP,
+         'TRACT' = GEOID)
+studysites
+
+studysites %>%
+  ggplot() +
+  geom_sf(aes(fill=C000)) +
+  labs(title = 'Colorado Tracts',
+       subtitle = 'Source: Census')
+
+
+
+
+
+```
+
