@@ -434,23 +434,28 @@ library(sf)
 #Link of Data source: https://lehd.ces.census.gov/data/schema/latest/lehd_shapefiles.html#_sources  
 
 
+#Load in the Shapefiles
 
 ST <- st_read("/Users/huntercarroll/Desktop/WorkingSetLodes/tl_2021_78_tract/tl_2021_78_tract.shp")
+
+#Join Shapefile with CombinedDataFrames from RAC/WAC/CENSUS Data provided by 'GEOID'
+
 SpacialCombined<-join_all(list(ST,CombinedDataFrames), by="GEOID")
+
+#Write the table 
+
 write.table(SpacialCombined, file="SpacialCombined.csv", sep = ",")
 
+#Read the table in
+
 SpacialCombined <- read.csv("SpacialCombined.csv")
+
+#View them, however, I get issue as zero rows are previewed to me
 
 head(ST)
 head(CombinedDataFrames)
 
 
-
-
-
-write.table(SpacialCombined, file="SpacialCombined.csv", sep = ",")
-
-SpacialCombined <- read.csv("SpacialCombined.csv")
 
 
 #Plotting the Tracts of Colorado:
