@@ -477,3 +477,76 @@ studysites %>%
 
 ```
 
+__Merging All the Dataframes:__
+
+
+```{r}
+
+#RAC-2018 Data
+
+RAC2018 <- read.csv("RAC2018.csv")
+RAC2018$h_tract <- str_pad(RAC2018$h_tract, 11, pad = '0')
+
+#Census Data 2019 Emailed to me:
+
+census_data2019 <- read.csv("census.data2019.csv")
+
+# Travel Times Emailed to me:
+
+RACTRAVELTIMES <- read.csv("RACTRAVELTIMES.csv")
+
+# PM Data Emailed to me:
+
+PMSOURCE <- read.csv("PMSOURCE.csv")
+
+PMSOURCE$ID <- str_pad(PMSOURCE$ID, 11, pad = '0')
+
+# Shapefile of States from Census:
+
+SHAPEFILESTATE <- st_read("/Users/huntercarroll/Desktop/WorkingSetLodes/tl_2018_us_state/tl_2018_us_state.shp")
+
+#Renaming the Data Frames for simplicity
+
+DF1= RAC2018
+DF2=census_data2019
+DF3=PMSOURCE
+DF4=RACTRAVELTIMES
+DF5=SHAPEFILESTATE
+
+
+# Merging data frame 1,2, and 3 works,
+
+AAA=merge(DF1, DF2, by.x="GEOID", by.y="GEOID")
+
+BBB=merge(AAA, DF3, by.x="GEOID", by.y="GEOID")
+
+#My issue is that Data fram 4 and 5 (Travel times and shapefile aren't merging and can't find a column that is common)
+
+Names(DF4)
+Names(DF5)
+
+#Print of names:
+
+
+>Names(DF4) 
+"A102110...Travel.time.to.work..12...Workers.16.years.and.over."
+ [2] "All Workers Estimate"                                          
+ [3] "Did not work at home: Estimate"                                
+ [4] "Less than 5 minutes Estimate"                                  
+ [5] "5 to 14 minutes Estimate"                                      
+ [6] "15 to 19 minutes Estimate"                                     
+ [7] "20 to 29 minutes Estimate"                                     
+ [8] "30 to 44 minutes Estimate"                                     
+ [9] "45 to 49 minutes Estimate"                                     
+[10] "60 to 74 minutes Estimate"                                     
+[11] "75 to 89 minutes Estimate"                                     
+[12] "90 minutes or more Estimate"                                   
+[13] "Worked at home Estimate"                                       
+[14] "X.12"                                                          
+> names(DF5)
+ [1] "REGION"   "DIVISION" "STATEFP"  "STATENS"  "GEOID"    "STATE"    "NAME"    
+ [8] "LSAD"     "MTFCC"    "FUNCSTAT" "ALAND"    "AWATER"   "INTPTLAT" "INTPTLON"
+[15] "geometry"
+
+
+```
