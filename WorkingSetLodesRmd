@@ -644,3 +644,121 @@ so the only way for me to merge this was to create geometry of tracts as the com
 
 
 
+Using Leaflet and Mapview:
+
+
+
+```{r}
+
+
+#The packages you will need:
+#install.packages("spdep")
+library("spdep")
+library(rgdal)
+#install.packages("sf")
+library(sf)
+#install.packages("tidycensus")
+library(tidycensus)
+#install.packages("tigris")
+library(tigris)
+options(tigris_use_cache = TRUE)
+#install.packages("mapview")
+library(mapview)
+#install.packages("leafsync")
+library(leafsync)
+#install.packages("systemfonts", type = "binary")
+library(systemfonts)
+library(stringr)
+
+
+
+#RAC data (Disregard the "RAC2018.csv" Accidentally named it 2018), 
+
+RAC2019 <- read.csv("RAC2019.csv")
+RAC2019$h_tract <- str_pad(RAC2019$h_tract, 11, pad = '0')
+colnames(RAC2019)[colnames(RAC2019)=='h_tract'] <- "GEOID"
+
+#Census data, 
+
+census_data2019 <- read.csv("census.data2019.csv", header = T)
+census_data2019$GEOID <- str_pad(census_data2019$GEOID, 11, pad = '0')
+
+
+#Read the data in for RAC commute times , 
+
+TRAVELTIMESUPDATED <- read.csv("TRAVELTIMESUPDATED.csv")
+
+
+
+#PM source data, 
+
+PMSOURCE <- read.csv("PMSOURCE.csv", header=T)
+PMSOURCE$ID <- str_pad(PMSOURCE$ID, 11, pad = '0')
+colnames(PMSOURCE)[colnames(PMSOURCE)=='ID'] <- "GEOID"
+
+#Data renamed, 
+
+DF1= (RAC2019)
+
+DF2=(census_data2019)
+
+DF3=(PMSOURCE)
+
+DF4= TRAVELTIMESUPDATED
+
+Colorado<- tracts(state = "CO", year = 2019)
+
+
+
+
+#Merge Colorado Data
+
+A<- merge(DF1, Colorado, by="GEOID", all.x=TRUE)
+B<- merge(DF2,Colorado, by="GEOID", all.x=TRUE)
+C<- merge(DF3, Colorado, by="GEOID", all.x=TRUE)
+D<- merge(DF4,Colorado, by="row.names")
+
+Merge1<- merge(A,B, by="GEOID")
+Merge2<- merge(C, D, by="TRACTCE")
+ColoradoData<- merge(Merge1, Merge2, by="GEOID" )
+ColoradoCombined<-merge(ColoradoData, ColoradoTracts,by="GEOID")
+st_crs(Colorado)
+st_as_sf(Colorado)
+st_write(Colorado, "Colorado.shp", driver = "ESRI Shapefile")
+ColoradoTracts<-read_sf("/users/HunterCarroll/Desktop/WorkingSetLodes/Colorado.shp")
+
+n<- length(ColoradoTracts)
+
+plot(ColoradoTracts, col=rainbow(n))
+
+library(rgdal)
+library(raster)
+library("sp")
+
+mapview(ColoradoCombined)+plot(ColoradoCombined["pm_2005"])
+
+library(leaflet)
+
+
+library(tmap)
+
+tm_shape(ColoradoCombined)+
+  tm_polygons("pm_2005", style="quantile", title="PM_2005" )
+
+library(leaflet)
+
+
+#Aurora interactive map with all data tied to region. 
+mapview(ColoradoCombined[10,])
+
+mapview(ColoradoCombined["pm_2005"])
+
+
+
+
+
+
+
+
+
+```
