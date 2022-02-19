@@ -672,7 +672,7 @@ library(stringr)
 
 
 
-#RAC data (Disregard the "RAC2018.csv" Accidentally named it 2018), 
+ 
 
 RAC2019 <- read.csv("RAC2019.csv")
 RAC2019$h_tract <- str_pad(RAC2019$h_tract, 11, pad = '0')
