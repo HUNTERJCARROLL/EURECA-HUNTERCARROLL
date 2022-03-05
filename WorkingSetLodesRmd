@@ -703,7 +703,362 @@ mapview(TheMergedShapefile["pm_2005"])
 ```
 
 
+COLORADO SPECIFIC
 
+---
+title: "Colorado Specific"
+author: "Hunter Carroll"
+date: "2/28/2022"
+output: html_document
+---
+
+First, I will download the necessary packages and the datasets for Colorado that are focused on Residential Area Characteristics, travel times and census data all in the year 2019. 
+
+```{r}
+#install.packages("sf")
+#install.packages("stargazer")
+#install.packages("systemfonts", type = "binary")
+#The packages you will need:
+#install.packages("spdep")
+#install.packages("tidycensus")
+#install.packages("tigris")
+#install.packages("mapview")
+#install.packages("leafsync")
+#install.packages("systemfonts", type = "binary")
+#install.packages("vtable")
+
+library("spdep")
+library(rgdal)
+library(sf)
+library(tidycensus)
+library(tigris)
+options(tigris_use_cache = TRUE)
+library(mapview)
+library(leafsync)
+library(systemfonts)
+library(stringr)
+library(vtable)
+library(stargazer)
+
+#Colorado Shapefile Characteristics for the year 2019. 
+Colorado<- tracts(state = "CO", year = 2019)
+colnames(Colorado)[colnames(Colorado)=='NAMELSAD']<- "NAME"
+
+#RAC Dataset 
+RAC2019 <- read.csv("RAC2019.csv")
+RAC2019$h_tract <- str_pad(RAC2019$h_tract, 11, pad = '0')
+colnames(RAC2019)[colnames(RAC2019)=='h_tract'] <- "GEOID"
+
+#Census Data 2019
+
+census_data2019 <- read.csv("census.data2019.csv", header = T)
+census_data2019$GEOID <- str_pad(census_data2019$GEOID, 11, pad = '0')
+
+#RAC Commute Times
+TRAVELTIMESUPDATED <- read.csv("TRAVELTIMESUPDATED.csv")
+colnames(TRAVELTIMESUPDATED)[colnames(TRAVELTIMESUPDATED)=='GEOID'] <- "NAME"
+
+#PM Source Data 
+
+PMSOURCE <- read.csv("PMSOURCE.csv", header=T)
+PMSOURCE$ID <- str_pad(PMSOURCE$ID, 11, pad = '0')
+colnames(PMSOURCE)[colnames(PMSOURCE)=='ID'] <- "GEOID"
+
+#Shapefile Data: 
+ShapefileNATIONAL<- read_sf('/users/HunterCarroll/Desktop/WorkingSetLodes/SHAPEFILENATIONAL.shp')
+colnames(ShapefileNATIONAL)[colnames(ShapefileNATIONAL)=='NAME'] <- "Column"
+colnames(ShapefileNATIONAL)[colnames(ShapefileNATIONAL)=='NAMELSAD'] <- "NAME"
+head(ShapefileNATIONAL)
+```
+
+
+Second, I will merge all data sets into one data frame. The first to be merged are Census Data 2019 and Travel Times RAC by "NAME". The next data set to be merged is the RAC work characteristics with PM source by GEOID. 
+
+```{r}
+
+#Merge Census Data 2019 with Travel Times. 
+AAA<- merge(census_data2019, TRAVELTIMESUPDATED, by="NAME", all=TRUE)
+
+BBB<-merge(AAA, RAC2019, by="GEOID", all=TRUE)
+
+
+#Merge RAC LODES with PM SOURCE. 
+
+CCC<-merge(BBB, PMSOURCE, by="GEOID", all=TRUE)
+
+#Merge the data with the shapefile data. 
+#SHAPEFILEWRITE<-st_write(GEO, "SHAPEFILENATIONAL.shp", driver = "ESRI Shapefile")
+
+
+
+MergedNational<- merge(CCC, Colorado, by="GEOID")
+
+#write.table(MergedNational, "MergedShapefile.csv", sep = ",")
+
+```
+
+
+Third, mapview of pm_2018 in Colorado by GEOID/NAME.
+
+```{r}
+
+#First, load the data in.
+
+summary(MergedNational)
+
+#SHAPE<-write_sf(MergedNational, "MergedNational.shp", Driver="ESRI Shapefile")
+
+SHAPECOLORADO<- read_sf('/users/HunterCarroll/Desktop/WorkingSetLodes/MergedNational.shp')
+
+mapview(SHAPECOLORADO["pm_2018"], col.regions=c("red", "blue"),  trim = mapviewGetOption("trim"), viewer.suppress = mapviewGetOption("viewer.suppress"))
+
+mapview(SHAPECOLORADO, zcol="pm_2005", col.regions=c("blue", "red"),  map.types = c("Esri.WorldShadedRelief" ), viewer.suppress = mapviewGetOption("viewer.suppress"))
+
+```
+
+
+Fourth, using the sumtable function to create a summary of all variables in the given data set and find any additional NA produced from the merge. 
+
+```{r}
+
+#Code that gives the min,max, and sd.
+
+SummaryStats<-sumtable(MergedNational, title = 'Summary Statistics Colorado', add.median = TRUE,  summ=  list( c('notNA(x)','mean(x)','sd(x)','min(x)','max(x)'),
+     c('notNA(x)','mean(x)')), 
+                         
+                         
+)
+
+SummaryStats
+
+#Code that shows ths median and checks for the proportiong of NA.
+
+sumtable(MergedNational,summ=c('notNA(x)','mean(x)','median(x)','propNA(x)'), title='Summary Statistics: Colorado')
+
+
+
+```{r}
+
+#The packages you will need:
+#install.packages("spdep")
+library("spdep")
+library(rgdal)
+#install.packages("sf")
+library(sf)
+#install.packages("tidycensus")
+library(tidycensus)
+#install.packages("tigris")
+library(tigris)
+options(tigris_use_cache = TRUE)
+#install.packages("mapview")
+library(mapview)
+#install.packages("leafsync")
+library(leafsync)
+#install.packages("systemfonts", type = "binary")
+library(systemfonts)
+library(stringr)
+
+
+
+#RAC data (Disregard the "RAC2018.csv" Accidentally named it 2018), 
+
+RAC2019 <- read.csv("RAC2019.csv")
+RAC2019$h_tract <- str_pad(RAC2019$h_tract, 11, pad = '0')
+colnames(RAC2019)[colnames(RAC2019)=='h_tract'] <- "GEOID"
+
+#Census data, 
+
+census_data2019 <- read.csv("census.data2019.csv", header = T)
+census_data2019$GEOID <- str_pad(census_data2019$GEOID, 11, pad = '0')
+
+
+#Read the data in for RAC commute times , 
+
+TRAVELTIMESUPDATED <- read.csv("TRAVELTIMESUPDATED.csv")
+
+
+
+#PM source data, 
+
+PMSOURCE <- read.csv("PMSOURCE.csv", header=T)
+PMSOURCE$ID <- str_pad(PMSOURCE$ID, 11, pad = '0')
+colnames(PMSOURCE)[colnames(PMSOURCE)=='ID'] <- "GEOID"
+
+#Data renamed, 
+
+DF1= (RAC2019)
+
+DF2=(census_data2019)
+
+View(DF2)
+
+DF3=(PMSOURCE)
+
+DF4= TRAVELTIMESUPDATED
+
+
+
+#The geometry for all states by tract in the year 2019: 
+
+AK <- tracts(state = "AK", year = 2019)
+AL<- tracts(state = "AL", year = 2019)
+AR <- tracts(state = "AR", year = 2019)
+AZ <- tracts(state = "AZ", 2019)
+CA <- tracts(state = "CA", 2019)
+CO <- tracts(state = "CO", year = 2019)
+CT <- tracts(state = "CT", year = 2019)
+DC<- tracts(state = "DC", year = 2019)
+DE <- tracts(state = "DE", year = 2019)
+FL<-tracts(state = "FL", year = 2019)
+GA<-tracts(state = "GA", year = 2019)
+HI<- tracts(state = "HI", year = 2019)
+IA<-tracts(state = "IA", year = 2019)
+ID<- tracts(state = "ID", year = 2019)
+IL<- tracts(state = "IL", year = 2019)
+IN<-tracts(state = "IN", year = 2019)
+KS<- tracts(state = "KS", year = 2019)
+KY<-tracts(state = "KY", year = 2019)
+LA<-tracts(state = "LA", year = 2019)
+MA<-tracts(state = "MA", year = 2019)
+MD<- tracts(state = "MD", year = 2019)
+ME<-tracts(state = "ME", year = 2019)
+MI<-tracts(state = "MI", year = 2019)
+MN<-tracts(state = "MN", year = 2019)
+MO<- tracts(state = "MO", year = 2019)
+  MS<- tracts(state = "MS", year = 2019)
+  MT<-tracts(state = "MT", year = 2019)
+  NC<-tracts(state = "NC", year = 2019)
+  ND<- tracts(state = "ND", year = 2019)
+  NE<-tracts(state = "NE", year = 2019)
+  NH<-tracts(state = "NH", year = 2019)
+  NJ<- tracts(state = "NJ", year = 2019)
+  NM<-tracts(state = "NM", year = 2019)
+  NV<-tracts(state = "NV", year = 2019)
+  NY<-tracts(state = "NY", year = 2019)
+  OH<-tracts(state = "OH", year = 2019)
+  OK<-tracts(state = "OK", year = 2019)
+  OR<-tracts(state = "OR", year = 2019)
+  PA<-tracts(state = "PA", year = 2019)
+  RI<-tracts(state = "RI", year = 2019)
+  SC<-tracts(state = "SC", year = 2019)
+  SD<-tracts(state = "SD", year = 2019)
+  TN<-tracts(state = "TN", year = 2019)
+  TX<- tracts(state = "TX", year = 2019)
+  UT<-tracts(state = "UT", year = 2019)
+  VA<-tracts(state = "VA", year = 2019)
+  VT<-tracts(state = "VT", year = 2019)
+  WA<-tracts(state = "WA", year = 2019)
+  WI<- tracts(state = "WI", year = 2019)
+  WV<-tracts(state = "WV", year = 2019)
+  WY<-tracts(state = "WY", year = 2019)
+
+#Binding the rows to make a single data frame of tract structure from Tigris package:
+  
+library(dplyr)
+  
+GEO<- bind_rows(AK,AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VA, VT, WA, WI, WV, WY)
+
+write.table(GEO, "SHAPEFILE.shp")
+
+```
+
+Spatial Data Plot Using Leaflet:
+
+```{r}
+
+
+#First Make Colorado (TRACTS) a shapefile. 
+
+Colorado<- tracts(state = "CO", year = 2019)
+head(Colorado)
+
+#WriteShapefile<-st_write(Colorado, "ColoradoUpdated3.shp", driver = "ESRI Shapefile")
+
+
+A<- merge(DF1, CO, by="GEOID", all.x=TRUE)
+B<- merge(DF2,CO, by="GEOID", all.x=TRUE)
+C<- merge(DF3, CO, by="GEOID", all.x=TRUE)
+D<- merge(DF4,CO, by="row.names")
+
+Merge1<- merge(A,B, by="GEOID")
+Merge2<- merge(C, D, by="TRACTCE")
+ColoradoData<- merge(Merge1, Merge2, by="GEOID" )
+
+TheShapefile<-read_sf('/users/HunterCarroll/Desktop/WorkingSetLodes/ColoradoUpdated3.shp')
+
+TheMergedShapefile<-merge(ColoradoData, TheShapefile, by="GEOID")
+
+
+
+
+
+ColoradoSpatial<-st_as_sf(TheMergedShapefile)
+
+
+mapview(ColoradoSpatial["pm_2018"])
+
+mapview(ColoradoSpatial["C000"])
+
+
+merge(DF4, CO, by.x="GEOID", by.y="NAMELSAD")
+
+
+
+View(DF3)
+```
+
+
+Creating the tables: 
+
+```{r}
+#First, create national level RAC dataset to conduct analysis:
+
+DF1= (RAC2019)
+
+DF2=(census_data2019)
+
+DF3=(PMSOURCE)
+
+DF4= TRAVELTIMESUPDATED
+
+
+
+Firstmerge<- merge(DF1, GEO, by="GEOID")
+Secondmerge<- merge(DF2, GEO, by="GEOID")
+Thirdmerge<- merge(DF3, GEO, by="GEOID")
+Fourthmerge<- merge(DF4, GEO, by="row.names")
+
+
+
+yy<-merge(Firstmerge,GEO, by="GEOID")
+zz<- merge(Secondmerge, GEO, by="GEOID")
+AA<-merge(yy,zz, by="GEOID")
+BB<- merge(Thirdmerge, GEO, by="GEOID")
+CC<- merge(Fourthmerge, GEO, by="row.names")
+FinalMerge<- merge(BB,CC, by="GEOID")
+
+NationalRAC<-merge(AA, FinalMerge, by="GEOID")
+
+head(NationalRAC)
+
+#write.table(NationalRAC,"NationalRAC.csv", sep = ",")
+
+NationalRAC <- read.csv("NationalRAC.csv") 
+
+View(DF4)
+
+
+mean(NationalRAC$pctownerocc, na.rm=TRUE)
+
+```
+         
+
+
+
+
+
+
+```
 
 
 
