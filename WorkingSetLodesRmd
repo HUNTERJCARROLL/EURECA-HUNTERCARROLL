@@ -1,166 +1,52 @@
 ---
-  title: "Working Set Lodes"
-author: "Hunter Carroll"
-date: "1/14/2022"
-output: html_document
+title: "R Notebook"
+output: html_notebook
 ---
-  
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
-#RAC Lodes data is compiled for the year 2018 and using the write.table function I also create a CSV displaying the results. 
-
+First, these are the packages required to run the following trunks.
 
 ```{r}
-#Packages you will need:
-install.packages("dplyr")
-library(dplyr)
-install.packages(stringr)
+
+#install.packages("psych")
+library(psych)
+library(gt)
+library(tidyverse)
+
+#install.packages("plyr")
+library(plyr)
+#install.packages("stringr")
 library(stringr)
-install.packages("devtools")
-library(devtools)
-install.packages("lehdr")
-library(lehdr)
 library(readr)
-devtools::install_github("jamgreen/lehdr")
-
-
-
-#Listing below is the census tract level data for the following observed states. The characteristic is 2018 SI03 (Federal Primary Jobs)~JT05 for the year 2018. 
-
-AK= grab_lodes(state = "AK", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-AL= grab_lodes(state = "AL", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-AR= grab_lodes(state = "AR", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-AZ= grab_lodes(state = "AZ", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-CA= grab_lodes(state = "CA", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-
-CO= grab_lodes(state = "CO", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-CT= grab_lodes(state = "CT", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-DC= grab_lodes(state = "DC", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-DE= grab_lodes(state = "DE", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-FL= grab_lodes(state = "FL", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-GA= grab_lodes(state = "GA", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Hi= grab_lodes(state = "Hi", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-ia= grab_lodes(state = "ia", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-id = grab_lodes(state = "id", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-il= grab_lodes(state = "il", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-In= grab_lodes(state = "in", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Ks= grab_lodes(state = "Ks", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Ky= grab_lodes(state = "Ky", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-La= grab_lodes(state = "La", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-
-Ma= grab_lodes(state = "Ma", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Md= grab_lodes(state = "Md", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Me= grab_lodes(state = "Me", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Mi= grab_lodes(state = "Mi", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Mn= grab_lodes(state = "Mn", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-
-Mo= grab_lodes(state = "Mo", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Ms= grab_lodes(state = "Ms", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Mt= grab_lodes(state = "Mt", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Nc= grab_lodes(state = "Nc", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Nd= grab_lodes(state = "Nd", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Ne= grab_lodes(state = "Ne", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Nh= grab_lodes(state = "nh", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Nj= grab_lodes(state = "Nj", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Nm= grab_lodes(state = "Nm", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Nv= grab_lodes(state = "Nv", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Ny= grab_lodes(state = "Ny", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-oh= grab_lodes(state = "oh", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-ok= grab_lodes(state = "ok", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-or= grab_lodes(state = "or", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Pa= grab_lodes(state = "pa", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Pr= grab_lodes(state = "pr", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Ri= grab_lodes(state = "Ri", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Sc= grab_lodes(state = "Sc", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-
-Sd= grab_lodes(state = "Sd", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-
-Tn= grab_lodes(state = "Tn", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Tx= grab_lodes(state = "Tx", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-
-ut= grab_lodes(state = "ut", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-va= grab_lodes(state = "va", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-vi= grab_lodes(state = "vi", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-
-vt= grab_lodes(state = "vt", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-wa= grab_lodes(state = "wa", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-wi= grab_lodes(state = "wi", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-wv= grab_lodes(state = "wv", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-wy= grab_lodes(state = "wy", year = 2019, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-#Binding the results to create a CSV:
-
-RAC2018= bind_rows( AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, Hi, ia, id, il, In, Ks, Ky, La, Ma, Md, Me, Mi, Mn, Mo, Ms, Mt, Nc, Nd, Ne, Nh, Nj, Nm, Nv, Ny, oh, ok, or, Pa, Pr, Ri, Sc, Sd, Tn, Tx, ut, va, vi, vt, wa, wi, wv, wy)
-
-#Writing the CSV:
-
-write.table(RAC2018, file="RAC2018.csv", sep = ",")
-
-#Once you have complied the data import the CSV from the working directory it should be names "RAC2018.csv"
-
-
-
-```
-
-
-#Next we export the WAC (Work Area Characteristics) from the Census LODES parent directory.
-
-```{r}
-#Once again the Packages you will need:
+#install.packages("spdep")
+library("spdep")
+library(rgdal)
+#install.packages("sf")
+library(sf)
+#install.packages("tidycensus")
+library(tidycensus)
+#install.packages("tigris")
+library(tigris)
+options(tigris_use_cache = TRUE)
+#install.packages("mapview")
+library(mapview)
+#install.packages("leafsync")
+library(leafsync)
+#install.packages("systemfonts", type = "binary")
+library(systemfonts)
+library(stringr)
+#install.packages("sf")
+library(sf)
+#install.packages("tidycensus")
+library(tidycensus)
+#install.packages("tigris")
+library(tigris)
+options(tigris_use_cache = TRUE)
+#install.packages("mapview")
+library(mapview)
+#install.packages("leafsync")
+library(leafsync)
+#install.packages("systemfonts", type = "binary")
+library(systemfonts)
 #install.packages("dplyr")
 library(dplyr)
 #install.packages(stringr)
@@ -170,898 +56,294 @@ library(devtools)
 #install.packages("lehdr")
 library(lehdr)
 library(readr)
-devtools::install_github("jamgreen/lehdr")
-
-#The code for WAC in all observed states for the year 2016:
-
-AK1= grab_lodes(state = "AK", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-AL1= grab_lodes(state = "AL", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-AR1= grab_lodes(state = "AR", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-AZ1= grab_lodes(state = "AZ", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-CA1= grab_lodes(state = "CA", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-
-CO1= grab_lodes(state = "CO", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-CT1= grab_lodes(state = "CT", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-DC1= grab_lodes(state = "DC", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-DE1= grab_lodes(state = "DE", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-FL1= grab_lodes(state = "FL", year = 2016, lodes_type = "RAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-GA1= grab_lodes(state = "GA", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Hi1= grab_lodes(state = "Hi", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-ia1= grab_lodes(state = "ia", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-id1 = grab_lodes(state = "id", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-il1= grab_lodes(state = "il", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-In1= grab_lodes(state = "in", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Ks1= grab_lodes(state = "Ks", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Ky1= grab_lodes(state = "Ky", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-La1= grab_lodes(state = "La", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-
-Ma1= grab_lodes(state = "Ma", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Md1= grab_lodes(state = "Md", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Me1= grab_lodes(state = "Me", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Mi1= grab_lodes(state = "Mi", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Mn1= grab_lodes(state = "Mn", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-
-Mo1= grab_lodes(state = "Mo", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Ms1= grab_lodes(state = "Ms", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Mt1= grab_lodes(state = "Mt", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Nc1= grab_lodes(state = "Nc", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Nd1= grab_lodes(state = "Nd", year = 2018, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Ne1= grab_lodes(state = "Ne", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Nh1= grab_lodes(state = "nh", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Nj1= grab_lodes(state = "Nj", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Nm1= grab_lodes(state = "Nm", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Nv1= grab_lodes(state = "Nv", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Ny1= grab_lodes(state = "Ny", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-oh1= grab_lodes(state = "oh", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-ok1= grab_lodes(state = "ok", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-or1= grab_lodes(state = "or", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Pa1= grab_lodes(state = "pa", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-
-Ri1= grab_lodes(state = "Ri", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Sc1= grab_lodes(state = "Sc", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-
-Sd1= grab_lodes(state = "Sd", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-
-Tn1= grab_lodes(state = "Tn", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-Tx1= grab_lodes(state = "Tx", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-
-ut1= grab_lodes(state = "ut", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-va1= grab_lodes(state = "va", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-
-
-
-vt1= grab_lodes(state = "vt", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-wa1= grab_lodes(state = "wa", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-wi1= grab_lodes(state = "wi", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-wv1= grab_lodes(state = "wv", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-wy1= grab_lodes(state = "wy", year = 2016, lodes_type = "WAC", job_type = "JT05", segment = "SI03", state_part =  "main", agg_geo = "tract" )
-
-#Next we bind the rows:
-
-WACJT05= bind_rows( AK1, AL1, AR1, AZ1, CA1, CO1, CT1, DC1, DE1, FL1, GA1, Hi1, ia1, id1, il1, In1, Ks1, Ky1, La1, Ma1, Md1, Me1, Mi1, Mn1, Mo1, Ms1, Mt1, Nc1, Nd1, Ne1, Nh1, Nj1, Nm1, Nv1, Ny1, oh1, ok1, or1, Pa1, Ri1, Sc1, Sd1, Tn1, Tx1, ut1, va1, vt1, wa1, wi1, wv1, wy1) 
-
-#Write the CSV:
-
-write.table(WACJT05, file="2016WAC.csv", sep = ",")
-
-```
-
-
-
-#Working with the sf package and tigris:
-
-```{r}
-
-#The packages you will need:
-
-install.packages("sf")
+#devtools::install_github("jamgreen/lehdr")
+#install.packages("dplyr")
+library(dplyr)
+#install.packages(stringr)
+library(stringr)
+#install.packages("devtools")
+library(devtools)
+#install.packages("lehdr")
+library(lehdr)
+library(readr)
+#install.packages("spdep")
+library("spdep")
+library(rgdal)
+#install.packages("sf")
 library(sf)
-install.packages("tidycensus")
+#install.packages("tidycensus")
 library(tidycensus)
-install.packages("tigris")
+#install.packages("tigris")
 library(tigris)
 options(tigris_use_cache = TRUE)
-install.packages("mapview")
+#install.packages("mapview")
 library(mapview)
-install.packages("leafsync")
+#install.packages("leafsync")
 library(leafsync)
-install.packages("systemfonts", type = "binary")
+#install.packages("systemfonts", type = "binary")
 library(systemfonts)
+library(stringr)
 
-
-CO <- tracts(state = "CO")
-
-#Geometry information for Colorado:
-
-CO
-
-#COLORADO GEOIDS by list, write this as a data frame and merge the three data sets: 
-
-list(CO$geometry)
-
-#Colorado plotted:
-
-plot(CO$geometry)+ title(main = "Colorado's Geometry Using Tigris")
-
-#Colorado Tracts plotted for Arapahoe County: 
-
-Arapahoe_Tracts <- tracts(state = "CO", county = "Arapahoe")
-plot(Arapahoe_Tracts$geometry)+ title(main = "Arapahoe County (CO) Tracts")
-
-
-Arapahoe_Roads <- roads(state = "CO", county = "Arapahoe")
-
-plot(Arapahoe_Roads)
-
-#Now plotting Census Tracts for different years:
-
-COTRACTS1990 <- suppressMessages(tracts("CO", "Arapahoe", cb=TRUE))
-
-COTRACTS2000<- suppressMessages(tracts("CO", "Arapahoe", cb= TRUE, year = 2000))
-
-COTRACTS2010 <- suppressMessages(tracts("CO", "Arapahoe", cb=TRUE, year = 2010))
-
-COTRACTS2020<- suppressMessages( tracts("CO", "Arapahoe", cb= TRUE, year = 2020))
-
-par(mfrow=c(2,2))
-
-plot(COTRACTS1990$geometry, main = "1990")
-plot(COTRACTS2000$geometry, main= "2000")
-plot(COTRACTS2010$geometry, main = "2010")
-plot(COTRACTS2020$geometry, main = "2020")
-
-mapview(tracts(state = "CO", county = "Arapahoe", year = 2018))
-
-
+library("spdep")
+library(rgdal)
+library(sf)
+library(tidycensus)
+library(tigris)
+options(tigris_use_cache = TRUE)
+library(mapview)
+library(leafsync)
+library(systemfonts)
+library(stringr)
+#library(vtable)
+#library(stargazer)
 ```
 
-
-#Now, we combine the written CSV for RAC and WAC with Census data provided into a single data frame:
+Second, since we are working in the Colorado Specific framework we want to load in data that corresponds with RAC for 2019 from the census LODES parent directory. Then we want to load in the data from the WAC 2018 data (Latest year possible). Among this, census data for all tracts that include variables such as percent Hispanic or percent white. Furthermore, we must load in the RAC and WAC travel times (commute data). Then, we will finally load in the pollution source data.
 
 ```{r}
+#RAC data for 2019, we will also pad all GEOIDs with a leading zero and remain h_tract to GEOID so that our data moving forward has corresponding columns. 
 
-#Packages you need:
+RAC2019 <- read.csv("RAC2019.csv")
+RAC2019$h_tract <- str_pad(RAC2019$h_tract, 11, pad = '0')
+colnames(RAC2019)[colnames(RAC2019)=='h_tract'] <- "GEOID"
 
-#install.packages("plyr")
-library(plyr)
-#install.packages("stringr")
-library(stringr)
-library(readr)
+#Next we want to load in the WAC data from 2018, we will also pad this data with a leading zero and rename the variable w_tract to GEOID for later merging. 
+
+WAC <- read.csv("C:/Users/hunte/Desktop/EURECA/2016WAC.csv")
+WAC$w_tract <- str_pad(WAC$w_tract, 11, pad = '0')
+colnames(WAC)[colnames(WAC)=='w_tract'] <- "GEOID"
+
+#Next we will load in the corresponding travel time data, however, we do have to rename all the columns due to a read in issue that code will be displayexd below.  
 
 
-RAC2018 <- read.csv("RAC2018.csv")
+RACTravelTimes <- read.csv("C:/Users/hunte/Desktop/EURECA/RACTravelTimes.csv")
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='A102110...Travel.time.to.work..12...Workers.16.years.and.over.'] <- "NAME"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X'] <- "All Workers Estimate"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.1'] <- "Margin  Error "
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.2'] <- "Did not work at home: Estimate"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.3'] <- "MArgin of Error"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.4'] <- "Less tha 5 minutes: Estimate"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.5'] <- "Margin of Error"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.6'] <- "5 to 14 minutes: Estimate"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.7'] <- "Margin of error"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.8'] <- "15 to 19 minutes: Estimate"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.9'] <- "Margin of Error"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.10'] <- "20 to 29 minutes: Estimate"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.11'] <- "Margin of Error"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.12'] <- "30 to 44 Minutes: Estimate"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.13'] <- "Margin of Error"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.14'] <- "45 to 59 minutes: Estimate"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.15'] <- "Margin of Error"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.16'] <- "60 to 74 minutes: Estimate"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.17'] <- "Margin of Error"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.18'] <- "70 to 89 minutes: Estimate"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.19'] <- "Margin of Error"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.20'] <- "90 minutes of more: Estimate"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.21'] <- "Margin of Error"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.22'] <- "Worked at home: Estimate"
+colnames(RACTravelTimes)[colnames(RACTravelTimes)=='X.23'] <- "Margin of Error"
 
-X2016WAC <- read_csv("2016WAC.csv")
 
+
+WACTravelTimes <-read.csv("C:/Users/hunte/Desktop/EURECA/WACTravelTimes.csv")
+colnames(WACTravelTimes)[colnames(WACTravelTimes)==' A202113...Travel.time..12...Workers.16.years.and.over.'] <- "NAME"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X'] <- "All Workers Estimate"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.1'] <- "Margin  Error "
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.2'] <- "Did not work at home: Estimate"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.3'] <- "Margin of Error"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.4'] <- "Less tha 5 minutes: Estimate"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.5'] <- "Margin of Error"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.6'] <- "5 to 14 minutes: Estimate"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.7'] <- "Margin of error"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.8'] <- "15 to 19 minutes: Estimate"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.9'] <- "Margin of Error"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.10'] <- "20 to 29 minutes: Estimate"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.11'] <- "Margin of Error"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.12'] <- "30 to 44 Minutes: Estimate"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.13'] <- "Margin of Error"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.14'] <- "45 to 59 minutes: Estimate"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.15'] <- "Margin of Error"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.16'] <- "60 to 74 minutes: Estimate"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.17'] <- "Margin of Error"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.18'] <- "70 to 89 minutes: Estimate"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.19'] <- "Margin of Error"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.20'] <- "90 minutes of more: Estimate"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.21'] <- "Margin of Error"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.22'] <- "Worked at home: Estimate"
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=='X.23'] <- "Margin of Error"
+
+#Next, we load in the Census Data for 2019, furthermore, we pad the GEOID with a leading zero, 
 
 census_data2019 <- read.csv("census.data2019.csv")
-
-colnames(RAC2018)[colnames(RAC2018)== "h_tract"] <- "GEOID"
-
-colnames(X2016WAC)[colnames(X2016WAC)== "w_tract"] <- "GEOID"
-
-colnames(census_data2019)[colnames(census_data2019)== "GEOID"] <- "GEOID"
-
-CombinedDataFrames <- join_all(list(RAC2018, X2016WAC, census_data2019), by="GEOID", type = 'full')
-
-CombinedDataFrames$GEOID <- paste("0",CombinedDataFrames$GEOID)
-
-# View of the data (Make sure the leading digit zero is there)
-
-head(CombinedDataFrames)
-
-#Write the CSV for the combined data frames:
-
-write.table(CombinedDataFrames, file="CombinedDataFrames.csv", sep = ",")
-
-
-
-
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```{r}
-
-library(sf)
-
-#Working with the SF package: 
-
-#Loading in the shape files for census tracts: 
-
-#Link of Data source: https://lehd.ces.census.gov/data/schema/latest/lehd_shapefiles.html#_sources  
-
-
-#Load in the Shapefiles
-
-ST <- st_read("/Users/huntercarroll/Desktop/WorkingSetLodes/tl_2021_78_tract/tl_2021_78_tract.shp")
-
-#Join Shapefile with CombinedDataFrames from RAC/WAC/CENSUS Data provided by 'GEOID'
-
-SpacialCombined<-join_all(list(ST,CombinedDataFrames), by="GEOID")
-
-#Write the table 
-
-write.table(SpacialCombined, file="SpacialCombined.csv", sep = ",")
-
-#Read the table in
-
-SpacialCombined <- read.csv("SpacialCombined.csv")
-
-#View them, however, I get issue as zero rows are previewed to me
-
-head(ST)
-head(CombinedDataFrames)
-
-
-
-
-#Plotting the Tracts of Colorado:
-
-studysites <- SpacialCombined %>%
-  select('STATE' = STATEFP,
-         'TRACT' = GEOID)
-studysites
-
-studysites %>%
-  ggplot() +
-  geom_sf(aes(fill=C000)) +
-  labs(title = 'Colorado Tracts',
-       subtitle = 'Source: Census')
-
-
-
-
-
-```
-
-Merging all data frames with respective geometry:
-
-```{r}
-
-#The packages you will need:
-#install.packages("spdep")
-library("spdep")
-library(rgdal)
-#install.packages("sf")
-library(sf)
-#install.packages("tidycensus")
-library(tidycensus)
-#install.packages("tigris")
-library(tigris)
-options(tigris_use_cache = TRUE)
-#install.packages("mapview")
-library(mapview)
-#install.packages("leafsync")
-library(leafsync)
-#install.packages("systemfonts", type = "binary")
-library(systemfonts)
-library(stringr)
-
-
-
-#RAC data, 
-
-RAC2019 <- read.csv("RAC2019.csv", header = T)
-RAC2019$h_tract <- str_pad(RAC2019$h_tract, 11, pad = '0')
-colnames(RAC2019)[colnames(RAC2019)=='h_tract'] <- "GEOID"
-
-#Census data, 
-
-census_data2019 <- read.csv("census.data2019.csv", header = T)
 census_data2019$GEOID <- str_pad(census_data2019$GEOID, 11, pad = '0')
 
+#Next we will load in the PM source data for tract level we also have to pad the GEOID and rename the column for the merge,
 
-#Read the data in for RAC commute times , 
-
-RACTRAVELTIMES <- read.csv("RACTRAVELTIMES.csv", header = T, stringsAsFactors=FALSE, strip.white = TRUE)
-
-#Since no matter what I do the columns are read as characters rather than numeric, 
-
-colnames(RACTRAVELTIMES)[colnames(RACTRAVELTIMES)=='All Workers'] <- "Tract Commute Times" 
-colnames(RACTRAVELTIMES)[colnames(RACTRAVELTIMES)=='X'] <- "All Workers Estimate"
-colnames(RACTRAVELTIMES)[colnames(RACTRAVELTIMES)=='X.1'] <- "Did Not Work at Home: Estimate"
-colnames(RACTRAVELTIMES)[colnames(RACTRAVELTIMES)=='X.2'] <- "Less than 5 Minutes: Estimate" 
-colnames(RACTRAVELTIMES)[colnames(RACTRAVELTIMES)=='X.3'] <- "5 to 14 Minutes: Estimate"
-colnames(RACTRAVELTIMES)[colnames(RACTRAVELTIMES)=='X.4'] <- "15 to 19 Minutes: Estimate"
-colnames(RACTRAVELTIMES)[colnames(RACTRAVELTIMES)=='X.5'] <- "20 to 29 Minutes: Estimate"
-colnames(RACTRAVELTIMES)[colnames(RACTRAVELTIMES)=='X.6'] <- "30 to 44 Minutes: Estimate"
-colnames(RACTRAVELTIMES)[colnames(RACTRAVELTIMES)=='X.7'] <- "45 to 59 Minutes: Estimate"
-colnames(RACTRAVELTIMES)[colnames(RACTRAVELTIMES)=='X.8'] <- "60 to 74 Minutes: Estimate" 
-colnames(RACTRAVELTIMES)[colnames(RACTRAVELTIMES)=='X.9'] <- "90 Minutes or More: Estimate"
-colnames(RACTRAVELTIMES)[colnames(RACTRAVELTIMES)=='X.11'] <- "Worked at Home: Estimate" 
-
-#PM source data, 
-
-PMSOURCE <- read.csv("PMSOURCE.csv", header=T)
+PMSOURCE <- read.csv("tract_pm_source_2000_2018.csv")
 PMSOURCE$ID <- str_pad(PMSOURCE$ID, 11, pad = '0')
 colnames(PMSOURCE)[colnames(PMSOURCE)=='ID'] <- "GEOID"
 
-#Data renamed, 
+#Next we should load in the shapefile for colorado and write it as a CSV and then a shapefile using the "sf" function, 
 
-DF1= RAC2019
-
-DF2=census_data2019
-
-DF3=PMSOURCE
-
-DF4=RACTRAVELTIMES
-
-
-
-#The geometry for all states by tract in the year 2019: 
-
-AK <- tracts(state = "AK", year = 2019)
-AL<- tracts(state = "AL", year = 2019)
-AR <- tracts(state = "AR", year = 2019)
-AZ <- tracts(state = "AZ", 2019)
-CA <- tracts(state = "CA", 2019)
 CO <- tracts(state = "CO", year = 2019)
-CT <- tracts(state = "CT", year = 2019)
-DC<- tracts(state = "DC", year = 2019)
-DE <- tracts(state = "DE", year = 2019)
-FL<-tracts(state = "FL", year = 2019)
-GA<-tracts(state = "GA", year = 2019)
-HI<- tracts(state = "HI", year = 2019)
-IA<-tracts(state = "IA", year = 2019)
-ID<- tracts(state = "ID", year = 2019)
-IL<- tracts(state = "IL", year = 2019)
-IN<-tracts(state = "IN", year = 2019)
-KS<- tracts(state = "KS", year = 2019)
-KY<-tracts(state = "KY", year = 2019)
-LA<-tracts(state = "LA", year = 2019)
-MA<-tracts(state = "MA", year = 2019)
-MD<- tracts(state = "MD", year = 2019)
-ME<-tracts(state = "ME", year = 2019)
-MI<-tracts(state = "MI", year = 2019)
-MN<-tracts(state = "MN", year = 2019)
-MO<- tracts(state = "MO", year = 2019)
-  MS<- tracts(state = "MS", year = 2019)
-  MT<-tracts(state = "MT", year = 2019)
-  NC<-tracts(state = "NC", year = 2019)
-  ND<- tracts(state = "ND", year = 2019)
-  NE<-tracts(state = "NE", year = 2019)
-  NH<-tracts(state = "NH", year = 2019)
-  NJ<- tracts(state = "NJ", year = 2019)
-  NM<-tracts(state = "NM", year = 2019)
-  NV<-tracts(state = "NV", year = 2019)
-  NY<-tracts(state = "NY", year = 2019)
-  OH<-tracts(state = "OH", year = 2019)
-  OK<-tracts(state = "OK", year = 2019)
-  OR<-tracts(state = "OR", year = 2019)
-  PA<-tracts(state = "PA", year = 2019)
-  RI<-tracts(state = "RI", year = 2019)
-  SC<-tracts(state = "SC", year = 2019)
-  SD<-tracts(state = "SD", year = 2019)
-  TN<-tracts(state = "TN", year = 2019)
-  TX<- tracts(state = "TX", year = 2019)
-  UT<-tracts(state = "UT", year = 2019)
-  VA<-tracts(state = "VA", year = 2019)
-  VT<-tracts(state = "VT", year = 2019)
-  WA<-tracts(state = "WA", year = 2019)
-  WI<- tracts(state = "WI", year = 2019)
-  WV<-tracts(state = "WV", year = 2019)
-  WY<-tracts(state = "WY", year = 2019)
+#st_write( CO, "CO.shp", driver="ESRI shapefile")
+CO<- read_sf('/users/hunte/Desktop/EURECA/CO.shp')
+colnames(CO)[colnames(CO)=='NAME'] <- "Column"
+colnames(CO)[colnames(CO)=='NAMELSAD'] <- "NAME"
 
-#Binding the rows to make a single data frame of tract structure from Tigris package:
+
+```
+
+Next we need to merge all the given data sets in order to create one that is centeralized around colorado shapefile characteristics. The merge function will automatically filter to Colorado data.
+
+```{r}
+
+Firstmerge<- merge(RAC2019, CO, by="GEOID")
+secondmerge<-  merge(census_data2019, RACTravelTimes, by="NAME")
+Thirdmerge<- merge(Firstmerge, secondmerge, by="GEOID")
+MergedDataCO<- merge(Thirdmerge, PMSOURCE, by="GEOID")
+
+
+
+```
+
+Next we will create summary statistics for RAC data,
+
+```{r}
+
+
+#First we will use the dependent variables: Toxcity values in residential tract:
+
+
+
+dependentvariable<- describe(MergedDataCO[,c("pm_2018")])
+
+#Second Independent Variables: Proportion Black in RAC: 
+#Third, Independent Variable: Proportion Hispanic in RAC
+
+#Fourth, Independent Variable: Median Income Residents in Tract: 
+
+#Fifth, Independent Variable: Proportion Residents Employed in Manufacturing: 
+
+
+#Sixth, Independent Variable: Median out-commute time of residents From Home Tract: 
+independentvariables<- describe(MergedDataCO[,c("pcthispanic", "pctblack", "medhhincome", "CNS05","Less tha 5 minutes: Estimate", "5 to 14 minutes: Estimate", "15 to 19 minutes: Estimate", "20 to 29 minutes: Estimate","30 to 44 Minutes: Estimate", "30 to 44 Minutes: Estimate", "45 to 59 minutes: Estimate", "60 to 74 minutes: Estimate", "70 to 89 minutes: Estimate", "90 minutes of more: Estimate" )]) 
+
+
+
+
+#Now, I will create a table displaying summary statistics for the RAC data in Colorado for 2019, 
+
+DATAANALYSIS<- rbind(dependentvariable, independentvariables)
+row.names(DATAANALYSIS)[row.names(DATAANALYSIS)=="X1"]<- "PM (Dependent Variable)"
+
+
+
+ DATAANALYSIS %>%  gt(rownames_to_stub = TRUE) %>% tab_header(title = md("Variable Descriptives for Colorado Residential Area Characteristics, 2019 (N=1239 Tracts)"), subtitle = md('*Colorado Data Analysis by Tract*')) %>% opt_align_table_header(align = "left")%>% fmt_number(columns = everything())%>% tab_style(
+   locations = cells_body(
+     columns = everything(),
+     rows = "PM (Dependent Variable)"
+   ),
+   style = list(
+     cell_fill(color = "#5599FF"), 
+      cell_text(color = "white")
+   )
+   )%>% tab_source_note(source_note = md("Source:Dataset is from ACS Census Data 2019. Pollution Source data is from"))%>% tab_footnote(footnote = "PM data from 2018 is our Dependent Variable.", locations = cells_stub(rows = "PM (Dependent Variable)"))
+
+
   
-GEO<- bind_rows(AK,AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VA, VT, WA, WI, WV, WY)
-
-
-
-#Merge:
-
-
-
-AAA<- merge(DF1, GEO, by="GEOID")
-BBB<- merge(DF2, GEO, by="GEOID")
-
-#Now the two dataframes have TRACTCE and GEOID and STATEFP in common by merging with TRACTCE it automatically filters those in, 
-
-First<- merge(AAA, BBB, by="TRACTCE")
-
-CCC<- merge(DF3, GEO, by="GEOID")
-DDD<- merge(DF4, GEO, by="GEOID")
-
-Second<- merge(CCC, DDD, by="TRACTCE")
-
-#Combined Data Frames
-
-RAC2019COMBINED<- merge(First, Second, by="TRACTCE")
-
-
-
-#My biggest problem is with DF4 (Commute Times) no matter what I have tried it won't read the columns as numeric and wont read the header as true. Furthermore, there is no common column
-so the only way for me to merge this was to create geometry of tracts as the common columns. 
-
-
-
 ```
 
+Next, I will create summary statistics for WAC data in 2019.
 
-
-
-
-Using Leaflet and Mapview:
-
-
+Next we will create summary statistics for RAC data,
 
 ```{r}
 
+colnames(WACTravelTimes)[colnames(WACTravelTimes)=="A202113...Travel.time..12...Workers.16.years.and.over."]<- "NAME"
+head(WACTravelTimes)
 
-#The packages you will need:
-#install.packages("spdep")
-library("spdep")
-library(rgdal)
-#install.packages("sf")
-library(sf)
-#install.packages("tidycensus")
-library(tidycensus)
-#install.packages("tigris")
-library(tigris)
-options(tigris_use_cache = TRUE)
-#install.packages("mapview")
-library(mapview)
-#install.packages("leafsync")
-library(leafsync)
-#install.packages("systemfonts", type = "binary")
-library(systemfonts)
-library(stringr)
+Firstmerge2<- merge(WAC, CO, by="GEOID")
+secondmerge2<-  merge(census_data2019, WACTravelTimes, by="NAME")
+Thirdmerge2<- merge(Firstmerge, secondmerge, by="GEOID")
+MergedDataCOWAC<- merge(Thirdmerge, PMSOURCE, by="GEOID")
 
+#First we will use the dependent variables: Toxcity values in residential tract:
 
 
- 
-#First Make Colorado (TRACTS) a shapefile. 
 
-Colorado<- tracts(state = "CO", year = 2019)
+dependentvariable<- describe(MergedDataCOWAC[,c("pm_2018")])
 
-WriteShapefile<-st_write(Colorado, "ColoradoUpdated.shp", driver = "ESRI Shapefile")
+#Second Independent Variables: Proportion Black in RAC: 
+#Third, Independent Variable: Proportion Hispanic in RAC
 
-ColoradoData<- merge(Merge1, Merge2, by="GEOID" )
+#Fourth, Independent Variable: Median Income Residents in Tract: 
 
-TheShapefile<-read_sf('/users/HunterCarroll/Desktop/WorkingSetLodes/ColoradoUpdated.shp')
+#Fifth, Independent Variable: Proportion Residents Employed in Manufacturing: 
 
-TheMergedShapefile<-merge(ColoradoData, TheShapefile, by="GEOID")
 
-write.csv(TheMergedShapefile, file = "TheMergedShapefile.csv", sep = ",")
+#Sixth, Independent Variable: Median out-commute time of residents From Home Tract: 
+independentvariables<- describe(MergedDataCOWAC[,c("pcthispanic", "pctblack", "medhhincome", "CNS05","Less tha 5 minutes: Estimate", "5 to 14 minutes: Estimate", "15 to 19 minutes: Estimate", "20 to 29 minutes: Estimate","30 to 44 Minutes: Estimate", "30 to 44 Minutes: Estimate", "45 to 59 minutes: Estimate", "60 to 74 minutes: Estimate", "70 to 89 minutes: Estimate", "90 minutes of more: Estimate" )]) 
 
-TheMergedShapefile <- read.csv("TheMergedShapefile.csv")
 
-st_crs(TheMergedShapefile)
-TheMergedShapefile<- st_as_sf(TheMergedShapefile)
 
-mapview(TheMergedShapefile)
 
-pm_2005 Concentration: 
+#Now, I will create a table displaying summary statistics for the RAC data in Colorado for 2019, 
 
+DATAANALYSISWAC<- rbind(dependentvariable, independentvariables)
+row.names(DATAANALYSISWAC)[row.names(DATAANALYSISWAC)=="X1"]<- "PM (Dependent Variable)"
 
-mapview(TheMergedShapefile["pm_2005"])
 
 
-```
+ DATAANALYSISWAC %>%  gt(rownames_to_stub = TRUE) %>% tab_header(title = md("Variable Descriptives for Colorado Workerplace Area Characteristics, 2019 (N=452 Tracts)"), subtitle = md('*Colorado Data Analysis by Tract*')) %>% opt_align_table_header(align = "left")%>% fmt_number(columns = everything())%>% tab_style(
+   locations = cells_body(
+     columns = everything(),
+     rows = "PM (Dependent Variable)"
+   ),
+   style = list(
+     cell_fill(color = "#5599FF"), 
+      cell_text(color = "white")
+   )
+   )%>% tab_source_note(source_note = md("Source:Dataset is from ACS Census Data 2019. Pollution Source data is from"))%>% tab_footnote(footnote = "PM data from 2018 is our Dependent Variable.", locations = cells_stub(rows = "PM (Dependent Variable)"))
 
 
-COLORADO SPECIFIC
-
----
-title: "Colorado Specific"
-author: "Hunter Carroll"
-date: "2/28/2022"
-output: html_document
----
-
-First, I will download the necessary packages and the datasets for Colorado that are focused on Residential Area Characteristics, travel times and census data all in the year 2019. 
-
-```{r}
-#install.packages("sf")
-#install.packages("stargazer")
-#install.packages("systemfonts", type = "binary")
-#The packages you will need:
-#install.packages("spdep")
-#install.packages("tidycensus")
-#install.packages("tigris")
-#install.packages("mapview")
-#install.packages("leafsync")
-#install.packages("systemfonts", type = "binary")
-#install.packages("vtable")
-
-library("spdep")
-library(rgdal)
-library(sf)
-library(tidycensus)
-library(tigris)
-options(tigris_use_cache = TRUE)
-library(mapview)
-library(leafsync)
-library(systemfonts)
-library(stringr)
-library(vtable)
-library(stargazer)
-
-#Colorado Shapefile Characteristics for the year 2019. 
-Colorado<- tracts(state = "CO", year = 2019)
-colnames(Colorado)[colnames(Colorado)=='NAMELSAD']<- "NAME"
-
-#RAC Dataset 
-RAC2019 <- read.csv("RAC2019.csv")
-RAC2019$h_tract <- str_pad(RAC2019$h_tract, 11, pad = '0')
-colnames(RAC2019)[colnames(RAC2019)=='h_tract'] <- "GEOID"
-
-#Census Data 2019
-
-census_data2019 <- read.csv("census.data2019.csv", header = T)
-census_data2019$GEOID <- str_pad(census_data2019$GEOID, 11, pad = '0')
-
-#RAC Commute Times
-TRAVELTIMESUPDATED <- read.csv("TRAVELTIMESUPDATED.csv")
-colnames(TRAVELTIMESUPDATED)[colnames(TRAVELTIMESUPDATED)=='GEOID'] <- "NAME"
-
-#PM Source Data 
-
-PMSOURCE <- read.csv("PMSOURCE.csv", header=T)
-PMSOURCE$ID <- str_pad(PMSOURCE$ID, 11, pad = '0')
-colnames(PMSOURCE)[colnames(PMSOURCE)=='ID'] <- "GEOID"
-
-#Shapefile Data: 
-ShapefileNATIONAL<- read_sf('/users/HunterCarroll/Desktop/WorkingSetLodes/SHAPEFILENATIONAL.shp')
-colnames(ShapefileNATIONAL)[colnames(ShapefileNATIONAL)=='NAME'] <- "Column"
-colnames(ShapefileNATIONAL)[colnames(ShapefileNATIONAL)=='NAMELSAD'] <- "NAME"
-head(ShapefileNATIONAL)
-```
-
-
-Second, I will merge all data sets into one data frame. The first to be merged are Census Data 2019 and Travel Times RAC by "NAME". The next data set to be merged is the RAC work characteristics with PM source by GEOID. 
-
-```{r}
-
-#Merge Census Data 2019 with Travel Times. 
-AAA<- merge(census_data2019, TRAVELTIMESUPDATED, by="NAME", all=TRUE)
-
-BBB<-merge(AAA, RAC2019, by="GEOID", all=TRUE)
-
-
-#Merge RAC LODES with PM SOURCE. 
-
-CCC<-merge(BBB, PMSOURCE, by="GEOID", all=TRUE)
-
-#Merge the data with the shapefile data. 
-#SHAPEFILEWRITE<-st_write(GEO, "SHAPEFILENATIONAL.shp", driver = "ESRI Shapefile")
-
-
-
-MergedNational<- merge(CCC, Colorado, by="GEOID")
-
-#write.table(MergedNational, "MergedShapefile.csv", sep = ",")
-
-```
-
-
-Third, mapview of pm_2018 in Colorado by GEOID/NAME.
-
-```{r}
-
-#First, load the data in.
-
-summary(MergedNational)
-
-#SHAPE<-write_sf(MergedNational, "MergedNational.shp", Driver="ESRI Shapefile")
-
-SHAPECOLORADO<- read_sf('/users/HunterCarroll/Desktop/WorkingSetLodes/MergedNational.shp')
-
-mapview(SHAPECOLORADO["pm_2018"], col.regions=c("red", "blue"),  trim = mapviewGetOption("trim"), viewer.suppress = mapviewGetOption("viewer.suppress"))
-
-mapview(SHAPECOLORADO, zcol="pm_2005", col.regions=c("blue", "red"),  map.types = c("Esri.WorldShadedRelief" ), viewer.suppress = mapviewGetOption("viewer.suppress"))
-
-```
-
-
-Fourth, using the sumtable function to create a summary of all variables in the given data set and find any additional NA produced from the merge. 
-
-```{r}
-
-#Code that gives the min,max, and sd.
-
-SummaryStats<-sumtable(MergedNational, title = 'Summary Statistics Colorado', add.median = TRUE,  summ=  list( c('notNA(x)','mean(x)','sd(x)','min(x)','max(x)'),
-     c('notNA(x)','mean(x)')), 
-                         
-                         
-)
-
-SummaryStats
-
-#Code that shows ths median and checks for the proportiong of NA.
-
-sumtable(MergedNational,summ=c('notNA(x)','mean(x)','median(x)','propNA(x)'), title='Summary Statistics: Colorado')
-
-
-
-```{r}
-
-#The packages you will need:
-#install.packages("spdep")
-library("spdep")
-library(rgdal)
-#install.packages("sf")
-library(sf)
-#install.packages("tidycensus")
-library(tidycensus)
-#install.packages("tigris")
-library(tigris)
-options(tigris_use_cache = TRUE)
-#install.packages("mapview")
-library(mapview)
-#install.packages("leafsync")
-library(leafsync)
-#install.packages("systemfonts", type = "binary")
-library(systemfonts)
-library(stringr)
-
-
-
-#RAC data (Disregard the "RAC2018.csv" Accidentally named it 2018), 
-
-RAC2019 <- read.csv("RAC2019.csv")
-RAC2019$h_tract <- str_pad(RAC2019$h_tract, 11, pad = '0')
-colnames(RAC2019)[colnames(RAC2019)=='h_tract'] <- "GEOID"
-
-#Census data, 
-
-census_data2019 <- read.csv("census.data2019.csv", header = T)
-census_data2019$GEOID <- str_pad(census_data2019$GEOID, 11, pad = '0')
-
-
-#Read the data in for RAC commute times , 
-
-TRAVELTIMESUPDATED <- read.csv("TRAVELTIMESUPDATED.csv")
-
-
-
-#PM source data, 
-
-PMSOURCE <- read.csv("PMSOURCE.csv", header=T)
-PMSOURCE$ID <- str_pad(PMSOURCE$ID, 11, pad = '0')
-colnames(PMSOURCE)[colnames(PMSOURCE)=='ID'] <- "GEOID"
-
-#Data renamed, 
-
-DF1= (RAC2019)
-
-DF2=(census_data2019)
-
-View(DF2)
-
-DF3=(PMSOURCE)
-
-DF4= TRAVELTIMESUPDATED
-
-
-
-#The geometry for all states by tract in the year 2019: 
-
-AK <- tracts(state = "AK", year = 2019)
-AL<- tracts(state = "AL", year = 2019)
-AR <- tracts(state = "AR", year = 2019)
-AZ <- tracts(state = "AZ", 2019)
-CA <- tracts(state = "CA", 2019)
-CO <- tracts(state = "CO", year = 2019)
-CT <- tracts(state = "CT", year = 2019)
-DC<- tracts(state = "DC", year = 2019)
-DE <- tracts(state = "DE", year = 2019)
-FL<-tracts(state = "FL", year = 2019)
-GA<-tracts(state = "GA", year = 2019)
-HI<- tracts(state = "HI", year = 2019)
-IA<-tracts(state = "IA", year = 2019)
-ID<- tracts(state = "ID", year = 2019)
-IL<- tracts(state = "IL", year = 2019)
-IN<-tracts(state = "IN", year = 2019)
-KS<- tracts(state = "KS", year = 2019)
-KY<-tracts(state = "KY", year = 2019)
-LA<-tracts(state = "LA", year = 2019)
-MA<-tracts(state = "MA", year = 2019)
-MD<- tracts(state = "MD", year = 2019)
-ME<-tracts(state = "ME", year = 2019)
-MI<-tracts(state = "MI", year = 2019)
-MN<-tracts(state = "MN", year = 2019)
-MO<- tracts(state = "MO", year = 2019)
-  MS<- tracts(state = "MS", year = 2019)
-  MT<-tracts(state = "MT", year = 2019)
-  NC<-tracts(state = "NC", year = 2019)
-  ND<- tracts(state = "ND", year = 2019)
-  NE<-tracts(state = "NE", year = 2019)
-  NH<-tracts(state = "NH", year = 2019)
-  NJ<- tracts(state = "NJ", year = 2019)
-  NM<-tracts(state = "NM", year = 2019)
-  NV<-tracts(state = "NV", year = 2019)
-  NY<-tracts(state = "NY", year = 2019)
-  OH<-tracts(state = "OH", year = 2019)
-  OK<-tracts(state = "OK", year = 2019)
-  OR<-tracts(state = "OR", year = 2019)
-  PA<-tracts(state = "PA", year = 2019)
-  RI<-tracts(state = "RI", year = 2019)
-  SC<-tracts(state = "SC", year = 2019)
-  SD<-tracts(state = "SD", year = 2019)
-  TN<-tracts(state = "TN", year = 2019)
-  TX<- tracts(state = "TX", year = 2019)
-  UT<-tracts(state = "UT", year = 2019)
-  VA<-tracts(state = "VA", year = 2019)
-  VT<-tracts(state = "VT", year = 2019)
-  WA<-tracts(state = "WA", year = 2019)
-  WI<- tracts(state = "WI", year = 2019)
-  WV<-tracts(state = "WV", year = 2019)
-  WY<-tracts(state = "WY", year = 2019)
-
-#Binding the rows to make a single data frame of tract structure from Tigris package:
   
-library(dplyr)
-  
-GEO<- bind_rows(AK,AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VA, VT, WA, WI, WV, WY)
-
-write.table(GEO, "SHAPEFILE.shp")
-
 ```
 
-Spatial Data Plot Using Leaflet:
+Next, we will plot the data for Colorado Workplace Area Characteristics and Residential Area Characteristics using the Mapview function:
+
+```{r}
+library(sf)
+
+
+WACPollution<- st_as_sf(MergedDataCOWAC)
+RACPollution<- st_as_sf(MergedDataCO)
+
+#The code below is for non-moving views of the pollution data. 
+#mapview(WACPollution["pm_2016"], col.regions=c("red", "blue"),  trim = mapviewGetOption("trim"), viewer.suppress = fals mapviewGetOption("viewer.suppress"))
+
+
+
+```
 
 ```{r}
 
 
-#First Make Colorado (TRACTS) a shapefile. 
-
-Colorado<- tracts(state = "CO", year = 2019)
-head(Colorado)
-
-#WriteShapefile<-st_write(Colorado, "ColoradoUpdated3.shp", driver = "ESRI Shapefile")
+mapview(list(RACPollution["pm_2018"]), col.regions=c("blue", "red"))
 
 
-A<- merge(DF1, CO, by="GEOID", all.x=TRUE)
-B<- merge(DF2,CO, by="GEOID", all.x=TRUE)
-C<- merge(DF3, CO, by="GEOID", all.x=TRUE)
-D<- merge(DF4,CO, by="row.names")
-
-Merge1<- merge(A,B, by="GEOID")
-Merge2<- merge(C, D, by="TRACTCE")
-ColoradoData<- merge(Merge1, Merge2, by="GEOID" )
-
-TheShapefile<-read_sf('/users/HunterCarroll/Desktop/WorkingSetLodes/ColoradoUpdated3.shp')
-
-TheMergedShapefile<-merge(ColoradoData, TheShapefile, by="GEOID")
+mapview(list(RACPollution),
+        zcol = list( "pm_2018"),
+        legend = list(TRUE),
+        homebutton = list(TRUE), col.regions=c("blue", "red"))
 
 
 
+mapview(list(WACPollution),
+        zcol = list( "pm_2018"),
+        legend = list(TRUE),
+        homebutton = list(TRUE), col.regions=c("blue", "red"))
 
-
-ColoradoSpatial<-st_as_sf(TheMergedShapefile)
-
-
-mapview(ColoradoSpatial["pm_2018"])
-
-mapview(ColoradoSpatial["C000"])
-
-
-merge(DF4, CO, by.x="GEOID", by.y="NAMELSAD")
-
-
-
-View(DF3)
-```
-
-
-Creating the tables: 
-
-```{r}
-#First, create national level RAC dataset to conduct analysis:
-
-DF1= (RAC2019)
-
-DF2=(census_data2019)
-
-DF3=(PMSOURCE)
-
-DF4= TRAVELTIMESUPDATED
-
-
-
-Firstmerge<- merge(DF1, GEO, by="GEOID")
-Secondmerge<- merge(DF2, GEO, by="GEOID")
-Thirdmerge<- merge(DF3, GEO, by="GEOID")
-Fourthmerge<- merge(DF4, GEO, by="row.names")
-
-
-
-yy<-merge(Firstmerge,GEO, by="GEOID")
-zz<- merge(Secondmerge, GEO, by="GEOID")
-AA<-merge(yy,zz, by="GEOID")
-BB<- merge(Thirdmerge, GEO, by="GEOID")
-CC<- merge(Fourthmerge, GEO, by="row.names")
-FinalMerge<- merge(BB,CC, by="GEOID")
-
-NationalRAC<-merge(AA, FinalMerge, by="GEOID")
-
-head(NationalRAC)
-
-#write.table(NationalRAC,"NationalRAC.csv", sep = ",")
-
-NationalRAC <- read.csv("NationalRAC.csv") 
-
-View(DF4)
-
-
-mean(NationalRAC$pctownerocc, na.rm=TRUE)
+update.packages(ask = FALSE)
 
 ```
-         
-
-
-
-
-
-
-```
-
-
-
-
-
-
